@@ -1,7 +1,10 @@
 export function getViewBox(svg: SVGSVGElement) {
   const viewBox = svg.getAttribute('viewBox');
   if (viewBox) {
-    const [x, y, width, height] = viewBox.split(' ').map(Number);
+    const [x, y, width, height] = viewBox
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number);
     return { x, y, width, height };
   }
   const widthStr = svg.getAttribute('width');
